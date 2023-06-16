@@ -28,6 +28,9 @@ for i in data_dict:
         if not localized_my_film:
             go_to_film_from_profile_page(driver, title_film, time_film)
         simulate_user_scroll(driver)
+        print("=============")
+        print(f"{i}    {title_film}")
+        print("=============")
 
 time.sleep(1)
 print("====== END =======")
