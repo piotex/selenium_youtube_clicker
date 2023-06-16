@@ -3,6 +3,7 @@ import time
 from selenium import webdriver
 import chromedriver_autoinstaller
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 
 def accept_cookies(driver_loc):
@@ -12,10 +13,8 @@ def accept_cookies(driver_loc):
     driver_loc.find_element(By.XPATH, x_path).click()
 
 
-def search_for_my_video_in_youtube_search(driver_loc, title_film):
+def search_for_my_video_in_youtube_search(driver_loc, text_val):
     yt_url = "https://youtube.com"
-    channel = "Piotr Kubon Dev Ops AI"
-    text_val = channel + " " + title_film
     x_path_search_inp = '//input[@id="search"]'
     x_path_search_btn = "//*[@id=\"search-icon-legacy\"]"
 
@@ -79,5 +78,79 @@ def get_max_column_number(driver) -> int:
         print(f'max_column_numb: {max_column_numb}')
     return max_column_numb
 
+def go_to_film_from_profile_page(driver, title_film, time_film):
+    channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
+    driver.get(channel_url)
+    time.sleep(1)
+    max_column_numb = get_max_column_number(driver)
+    for row in range(1, 1000):
+        for column in range(1, max_column_numb + 1):
+            x_path_video = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse/ytd-two-column-browse-results-renderer/div[1]/' \
+                           f'ytd-rich-grid-renderer/div[6]/ytd-rich-grid-row[{row}]/div/ytd-rich-item-renderer[{column}]/' \
+                           f'div/ytd-rich-grid-media/div[1]/div[2]/div[1]/h3/a/yt-formatted-string'
+            title_m = driver.find_element(by=By.XPATH, value=x_path_video).text
+            if title_m == title_film:
+                driver.find_element(by=By.XPATH, value=x_path_video).click()
+                time.sleep(time_film)
+                return None
+
+        driver.execute_script(f"window.scrollTo(0, {row * 800})")
+        time.sleep(1)
+
+def check_exists_by_xpath(driver, xpath):
+    try:
+        driver.find_element(by=By.XPATH, value=xpath)
+    except NoSuchElementException:
+        return False
+    return True
+
+def get_ytd_item_x_path_video(driver, film_numb):
+    ytd_item_section_renderer = -1
+    x_path_video = f"/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/" \
+                   f"ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/" \
+                   f"ytd-item-section-renderer/div[3]/ytd-video-renderer[{film_numb}]/" \
+                   f"div[1]/div/div[1]/div/h3/a/yt-formatted-string"
+    if check_exists_by_xpath(driver, x_path_video):
+        return x_path_video
+
+    scroll = 100
+    for i in range(1, 16):
+        scroll += random.randrange(100, 200)
+        driver.execute_script(f"window.scrollTo(0, {scroll})")
+        time.sleep(1)
+        x_path_video = f"/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/" \
+                       f"ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/" \
+                       f"ytd-item-section-renderer[{i}]/div[3]/ytd-video-renderer[{film_numb}]/" \
+                       f"div[1]/div/div[1]/div/h3/a/yt-formatted-string"
+        if check_exists_by_xpath(driver, x_path_video):
+            return x_path_video
+
+    raise Exception("get_ytd_item_section_renderer -> element not found :(")
 
 
+
+def go_to_film_from_search_option(driver, title_film, time_film):
+    scroll = 0
+    for i in range(1, 20):
+        scroll += random.randrange(100, 200)
+        x_path_video = f"/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/" \
+                       f"ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/" \
+                       f"ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/" \
+                       f"div[1]/div/div[1]/div/h3/a/yt-formatted-string"
+        res_text = driver.find_element(by=By.XPATH, value=x_path_video).text
+
+        if res_text == title_film:
+            driver.find_element(by=By.XPATH, value=x_path_video).click()
+            time.sleep(time_film)
+            return True
+        driver.execute_script(f"window.scrollTo(0, {scroll})")
+        time.sleep(1)
+    return False
+
+
+def go_to_rand_film_from_search_option(driver):
+    rand_film = random.randrange(1, 16)
+    watch_time = random.randrange(20, 40)
+    x_path_video = get_ytd_item_x_path_video(driver, rand_film)
+    driver.find_element(by=By.XPATH, value=x_path_video).click()
+    time.sleep(watch_time)
