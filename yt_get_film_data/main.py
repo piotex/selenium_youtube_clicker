@@ -3,7 +3,7 @@ import json
 from yt_watcher.yt_manager import *
 
 
-data_file_name = "data.json"
+data_file_name = "../data.json"
 channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
 
 chromedriver_autoinstaller.install()
@@ -41,7 +41,7 @@ try:
             dict_data[dict_data_counter] = {}
             dict_data[dict_data_counter]["title"] = title_m
             dict_data[dict_data_counter]["time"] = time_m
-            dict_data[dict_data_counter]["bot_views"] = 0
+            dict_data[dict_data_counter]["bot_views"] = 99
             dict_data_counter += 1
 
         driver.execute_script(f"window.scrollTo(0, {row*800})")
