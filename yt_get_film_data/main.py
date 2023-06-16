@@ -6,14 +6,7 @@ from yt_manager import *
 data_file_name = "../data.json"
 channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
 
-chromedriver_autoinstaller.install()
-driver = webdriver.Chrome()
-# accept cookies ---------------------------------------------------------------------------
-# try:
-#     accept_cookies(driver)
-# except Exception as eee:
-#     print(eee)
-# find my chanel ---------------------------------------------------------------------------
+driver = get_init_driver()
 
 driver.get(channel_url)
 
