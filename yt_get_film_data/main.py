@@ -1,6 +1,6 @@
 import json
 
-from yt_watcher.yt_manager import *
+from yt_manager import *
 
 
 data_file_name = "../data.json"
