@@ -23,6 +23,7 @@ def main(confidenceee, other_film_sleep_time):
         data_dict = json.load(json_file)
 
     sys.stdout.write(f"\r\n   001    \r\n")
+    sys.stdout.write(f"\r\n   {data_dict}    \r\n")
 
     try:
         sys.stdout.write(f"\r\n   002    \r\n")
