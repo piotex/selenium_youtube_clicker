@@ -42,13 +42,13 @@ def main(my_confidenceee, other_film_sleep_time):
                 time.sleep(time_film)
 
             simulate_user_scroll(driver)
-            print(f"=============\r\n{i}    {title_film}\r\n=============")
+            sys.stdout.write(f"=============\r\n{i}    {title_film}\r\n=============")
     except Exception as eee:
         sys.stdout.write(f"\r\n=============\r\n{eee}\r\n=============\r\n")
         pass
 
     time.sleep(1)
-    print("====== END =======")
+    sys.stdout.write("====== END =======")
 
 
 if __name__ == "__main__":
