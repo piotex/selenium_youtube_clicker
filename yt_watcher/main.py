@@ -20,8 +20,8 @@ def main(confidenceee, other_film_sleep_time):
     with open(file_name) as json_file:
         data_dict = json.load(json_file)
 
-    sys.stdout.write(f"\rother_film_sleep_time: {other_film_sleep_time}")
-    sys.stdout.write(f"\rhard_will___confidence_to_watch: {hard_will___confidence_to_watch}")
+    sys.stdout.write(f"\r\nother_film_sleep_time: {other_film_sleep_time}\r\n")
+    sys.stdout.write(f"\r\nhard_will___confidence_to_watch: {hard_will___confidence_to_watch}\n")
     try:
         driver = get_init_driver()
         for i in data_dict:
