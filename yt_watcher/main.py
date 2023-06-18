@@ -24,9 +24,13 @@ def main(confidenceee, other_film_sleep_time):
         driver = get_init_driver()
         for i in data_dict:
             title_film = ""
+            sys.stdout.write(f"\r\n   1    \r\n")
             search_for_my_video_in_youtube_search(driver, other_devops_films)
+            sys.stdout.write(f"\r\n   2    \r\n")
             go_to_rand_film_from_search_option(driver)
+            sys.stdout.write(f"\r\n   3    \r\n")
             other_film_sleep_time = other_film_sleep_time * random.uniform(0.9, 1.1)
+            sys.stdout.write(f"\r\n   4    \r\n")
             time.sleep(other_film_sleep_time)
 
             sys.stdout.write(f"\r\n   other_film_sleep_time: {other_film_sleep_time}\r\n")
