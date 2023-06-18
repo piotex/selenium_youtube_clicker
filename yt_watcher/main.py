@@ -17,8 +17,12 @@ def main(confidenceee, other_film_sleep_time):
     channel = "Piotr Kubon Dev Ops AI"
     hard_will___confidence_to_watch = confidenceee
 
+    sys.stdout.write(f"\r\n   000    \r\n")
+
     with open(file_name) as json_file:
         data_dict = json.load(json_file)
+
+    sys.stdout.write(f"\r\n   001    \r\n")
 
     try:
         driver = get_init_driver()
