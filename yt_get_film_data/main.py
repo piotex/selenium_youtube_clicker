@@ -4,7 +4,7 @@ import time
 from yt_manager import *
 
 
-data_file_name = "data.json"
+data_file_name = "selenium_youtube_clicker/data.json"
 channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
 
 driver = get_init_driver()
