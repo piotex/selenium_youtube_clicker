@@ -12,7 +12,7 @@ def get_title_time(data_dict, i):
 
 
 def main(confidenceee, other_film_sleep_time):
-    file_name = '../data.json'
+    file_name = 'data.json'
     other_devops_films = "dev ops for beginners"
     channel = "Piotr Kubon Dev Ops AI"
     hard_will___confidence_to_watch = confidenceee
