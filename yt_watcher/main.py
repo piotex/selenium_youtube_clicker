@@ -25,7 +25,9 @@ def main(confidenceee, other_film_sleep_time):
     sys.stdout.write(f"\r\n   001    \r\n")
 
     try:
+        sys.stdout.write(f"\r\n   002    \r\n")
         driver = get_init_driver()
+        sys.stdout.write(f"\r\n   003    \r\n")
         for i in data_dict:
             title_film = ""
             sys.stdout.write(f"\r\n   1    \r\n")
@@ -53,7 +55,7 @@ def main(confidenceee, other_film_sleep_time):
             simulate_user_scroll(driver)
             print(f"=============\r\n{i}    {title_film}\r\n=============")
     except Exception as eee:
-        print(f"=============\r\n{eee}\r\n=============")
+        sys.stdout.write(f"\r\n=============\r\n{eee}\r\n=============\r\n")
         pass
 
     time.sleep(1)
