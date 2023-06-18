@@ -1,13 +1,15 @@
 import json
+import time
 
 from yt_manager import *
 
 
-data_file_name = "../data.json"
+data_file_name = "data.json"
 channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
 
 driver = get_init_driver()
-
+time.sleep(1)
+print("--------------")
 driver.get(channel_url)
 
 dict_data = {}
