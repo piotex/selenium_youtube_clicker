@@ -91,11 +91,8 @@ def go_to_film_from_profile_page(driver, title_film, time_film):
             title_m = driver.find_element(by=By.XPATH, value=x_path_video).text
             if title_m == title_film:
                 driver.find_element(by=By.XPATH, value=x_path_video).click()
-                time.sleep(time_film)
+                simulate_user_scroll(driver)
                 return None
-
-        driver.execute_script(f"window.scrollTo(0, {row * 800})")
-        time.sleep(1)
 
 def check_exists_by_xpath(driver, xpath):
     try:
@@ -141,16 +138,13 @@ def go_to_film_from_search_option(driver, title_film, time_film):
 
         if res_text == title_film:
             driver.find_element(by=By.XPATH, value=x_path_video).click()
-            time.sleep(time_film)
+            simulate_user_scroll(driver)
             return True
-        driver.execute_script(f"window.scrollTo(0, {scroll})")
-        time.sleep(1)
     return False
 
 
 def go_to_rand_film_from_search_option(driver):
     rand_film = random.randrange(1, 16)
-    watch_time = random.randrange(20, 40)
     x_path_video = get_ytd_item_x_path_video(driver, rand_film)
     driver.find_element(by=By.XPATH, value=x_path_video).click()
-    time.sleep(watch_time)
+
