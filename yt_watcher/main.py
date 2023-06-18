@@ -19,6 +19,8 @@ def main(my_confidenceee, other_film_sleep_time):
 
     with open(file_name) as json_file:
         data_dict = json.load(json_file)
+        if len(data_dict):
+            raise Exception("-> data file contains no elems... or does not exist in this dir")
 
     try:
         driver = get_init_driver()
