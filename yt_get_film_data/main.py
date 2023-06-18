@@ -4,7 +4,7 @@ import time
 from yt_manager import *
 
 
-data_file_name = "selenium_youtube_clicker/data.json"
+data_file_name = "/home/pkubon/Desktop/jenkins-workspace/workspace/005-yt-get-film-data/selenium_youtube_clicker/data.json"
 channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
 
 driver = get_init_driver()
