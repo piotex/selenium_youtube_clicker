@@ -27,6 +27,8 @@ def main(confidenceee, other_film_sleep_time):
             search_for_my_video_in_youtube_search(driver, other_devops_films)
             go_to_rand_film_from_search_option(driver)
             time.sleep(other_film_sleep_time * random.uniform(0.9, 1.1))
+            print(f"other_film_sleep_time: {other_film_sleep_time}")
+            print(f"hard_will___confidence_to_watch: {hard_will___confidence_to_watch}")
 
             if random.randrange(0, 100) < hard_will___confidence_to_watch:
                 title_film, time_film = get_title_time(data_dict, i)
