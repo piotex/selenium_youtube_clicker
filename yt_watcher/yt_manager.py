@@ -128,7 +128,7 @@ def get_ytd_item_x_path_video(driver, film_numb):
 
 def go_to_film_from_search_option(driver, title_film, time_film):
     scroll = 0
-    for i in range(1, 20):
+    for i in range(1, 16):
         scroll += random.randrange(100, 200)
         x_path_video = f"/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/" \
                        f"ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/" \
