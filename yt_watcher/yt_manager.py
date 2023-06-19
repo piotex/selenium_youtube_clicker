@@ -78,7 +78,7 @@ def get_max_column_number(driver) -> int:
         print(f'max_column_numb: {max_column_numb}')
     return max_column_numb
 
-def go_to_film_from_profile_page(driver, title_film, time_film):
+def go_to_film_from_profile_page(driver, title_film):
     channel_url = 'https://www.youtube.com/@piotrkubondevopsai/videos'
     driver.get(channel_url)
     time.sleep(1)
@@ -91,7 +91,6 @@ def go_to_film_from_profile_page(driver, title_film, time_film):
             title_m = driver.find_element(by=By.XPATH, value=x_path_video).text
             if title_m == title_film:
                 driver.find_element(by=By.XPATH, value=x_path_video).click()
-                simulate_user_scroll(driver)
                 return None
 
 def check_exists_by_xpath(driver, xpath):
@@ -126,7 +125,7 @@ def get_ytd_item_x_path_video(driver, film_numb):
 
 
 
-def go_to_film_from_search_option(driver, title_film, time_film):
+def go_to_film_from_search_option(driver, title_film):
     scroll = 0
     for i in range(1, 16):
         scroll += random.randrange(100, 200)
@@ -138,7 +137,6 @@ def go_to_film_from_search_option(driver, title_film, time_film):
 
         if res_text == title_film:
             driver.find_element(by=By.XPATH, value=x_path_video).click()
-            simulate_user_scroll(driver)
             return True
     return False
 
