@@ -37,7 +37,7 @@ def main(numb_of_vid_to_watch_loc, other_film_sleep_time):
         driver = get_init_driver()
         data_dict_spec = get_rand_video_dict(numb_of_vid_to_watch_loc, data_dict)
         for i in data_dict_spec:
-            sys.stdout.write(f"=============\r\n{i}\r\n")
+            sys.stdout.write(f"============={i}")
             # ---- watch some random film ------
             other_film_sleep_time = other_film_sleep_time * random.uniform(0.9, 1.1)
             search_for_my_video_in_youtube_search(driver, other_devops_films)
@@ -55,7 +55,7 @@ def main(numb_of_vid_to_watch_loc, other_film_sleep_time):
 
             simulate_user_scroll(driver)
             time.sleep(time_film)
-            sys.stdout.write(f"{i}    {title_film}\r\n=============\r\n")
+            sys.stdout.write(f"{i}    {title_film}\r\n=============")
     except Exception as eee:
         sys.stdout.write(f"\r\n=============\r\n{eee}\r\n=============\r\n")
         pass
